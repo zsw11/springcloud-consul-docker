@@ -36,4 +36,9 @@
         from user
     </select>
 
+    <select id="selectById" resultType="com.zsw.provider.entity.model.User">
+        select <include refid="sql1"></include>
+        from user where id =#{id}
+    </select>
+
 </mapper>

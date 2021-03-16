@@ -1,7 +1,7 @@
 package com.zsw.comsumer.service.hystric;
 
 import com.zsw.comsumer.service.SyaHelloService;
-import org.springframework.cloud.openfeign.FallbackFactory;
+import feign.hystrix.FallbackFactory;
 import org.springframework.stereotype.Component;
 
 /**
@@ -17,6 +17,18 @@ public class SayHelloServiceHystrix implements FallbackFactory<SyaHelloService> 
         return new SyaHelloService() {
             @Override
             public String sayHello() {
+                System.out.println("服务熔断降级");
+                return "服务熔断降级";
+            }
+
+            @Override
+            public String index() {
+                System.out.println("服务熔断降级");
+                return "服务熔断降级";
+            }
+
+            @Override
+            public String csrf() {
                 System.out.println("服务熔断降级");
                 return "服务熔断降级";
             }

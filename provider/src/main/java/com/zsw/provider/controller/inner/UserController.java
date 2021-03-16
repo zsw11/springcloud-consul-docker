@@ -1,6 +1,7 @@
 package com.zsw.provider.controller.inner;
 
 
+import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
 import com.zsw.provider.entity.ResultResp;
 import com.zsw.provider.entity.model.User;
 import com.zsw.provider.service.UserService;
@@ -51,11 +52,12 @@ public class UserController {
     @ApiOperation("更新用户")
     @PutMapping("/update")
     public ResultResp updateUser(@Validated @RequestBody User user) {
-        int update = UserService.update(user);
-        if (update > 0) {
-            return ResultResp.success(update);
+        User userById = UserService.selectById(user.getId());
+        if (userById == null) {
+            throw  new RuntimeException("id:" + user.getId() + "不存在该用户，找不到信息");
         }
-        return ResultResp.fail("更新失败");
+        int update = UserService.update(user);
+        return ResultResp.success(update);
     }
 
     @ApiOperation("删除用户")
@@ -63,10 +65,10 @@ public class UserController {
     @DeleteMapping("/delete/{id}")
     public ResultResp deleteUser(@PathVariable int id) {
         int delete = UserService.delete(id);
-        if (delete > 0) {
-            return ResultResp.success(delete);
+        if (delete <= 0) {
+            throw  new RuntimeException("id:" +id + "不存在该用户，找不到信息");
         }
-        return ResultResp.fail("没有这个用户");
+        return ResultResp.success(delete);
     }
 
     @ApiOperation("分页获取用户")

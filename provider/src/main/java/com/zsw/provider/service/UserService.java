@@ -38,4 +38,9 @@ public interface UserService {
      */
     List<User> get(int pageNum, int pageSize);
 
- }
+    /**
+     * 根据id 查找用户
+     */
+    User selectById(int id);
+
+}

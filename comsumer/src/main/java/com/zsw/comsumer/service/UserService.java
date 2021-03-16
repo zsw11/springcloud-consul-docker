@@ -1,8 +1,8 @@
 package com.zsw.comsumer.service;
 
+import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
 import com.zsw.comsumer.entity.ResultResp;
 import com.zsw.comsumer.entity.model.User;
-import com.zsw.comsumer.service.hystric.SayHelloServiceHystrix;
 import com.zsw.comsumer.service.hystric.UserServiceHystrix;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.stereotype.Service;
@@ -14,9 +14,11 @@ import java.util.List;
  * @author zsw
  * @date 2021/3/11 14:15
  * @description :  注意这里的返回值必须和 服务提供方的controller 一致
+ * 这里需要使用fallbackFactory
  */
 @Service
-@FeignClient(value = "provider01",fallback = UserServiceHystrix.class) //调用的服务名称
+@FeignClient(name = "provider01",fallbackFactory = UserServiceHystrix.class) //调用的服务名称
+
 public interface UserService {
     /**
      * 添加用户
@@ -43,7 +45,7 @@ public interface UserService {
     ResultResp delete(@PathVariable("id") int id);
 
     /**
-     * 获取用户
+     * 分页获取用户
      * @return
      */
     @GetMapping("/get")

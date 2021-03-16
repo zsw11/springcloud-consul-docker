@@ -1,5 +1,6 @@
 package com.zsw.comsumer.controller.outer;
 
+import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
 import com.zsw.comsumer.entity.ResultResp;
 import com.zsw.comsumer.entity.model.User;
 import com.zsw.comsumer.service.UserService;

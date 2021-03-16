@@ -1,10 +1,10 @@
 package com.zsw.comsumer.service;
 
+import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
 import com.zsw.comsumer.service.hystric.SayHelloServiceHystrix;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.GetMapping;
 
 /**
  * @author zsw
@@ -12,9 +12,15 @@ import org.springframework.web.bind.annotation.RequestMethod;
  * @description :
  */
 @Service
-@FeignClient(value = "provider01",fallback = SayHelloServiceHystrix.class) //调用的服务名称
+@FeignClient(name = "provider01",fallbackFactory = SayHelloServiceHystrix.class) //调用的服务名称
 public interface SyaHelloService {
 
-    @RequestMapping(value = "/hello",method = RequestMethod.GET)
+    @GetMapping(value = "/hello")
     String sayHello();
+
+    @GetMapping("/")
+     String index();
+
+    @GetMapping("/csrf")
+     String csrf();
 }

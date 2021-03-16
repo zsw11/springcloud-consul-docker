@@ -6,7 +6,7 @@ spring:
     name: provider01
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/gen_test?useUnicode=true&characterEncoding=utf8&characterSetResults=utf8&useSSL=false
+    url: jdbc:mysql://localhost:3306/gen_test?useUnicode=true&characterEncoding=utf8&characterSetResults=utf8&useSSL=false&serverTimezone=UTC
     username: root
     password: 123456
 
@@ -22,7 +22,6 @@ spring:
         heartbeat:
           enabled: true  # 坑所在， springboot2.x 这个一定要开
         prefer-ip-address: true # 表示注册时使用IP而不是hostname
-
 
   rabbitmq: #对于rabbitMQ的支持
     host: 127.0.0.1
