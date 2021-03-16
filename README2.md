@@ -1,0 +1,1 @@
+用@HystrixCommand fallbackMethod的方式不是很好，因为和业务代码耦合度太高，不利于维护，所以需要解耦，就Feign Hystrix整合

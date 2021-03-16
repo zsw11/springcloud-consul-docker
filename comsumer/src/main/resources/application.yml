@@ -1,0 +1,41 @@
+server:
+  port: 8772
+spring:
+  application:
+    name: comsumer
+  main:
+    allow-bean-definition-overriding: true #允许存在多个Feign调用相同Service的接口
+
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/gen_test?useUnicode=true&characterEncoding=utf8&characterSetResults=utf8&useSSL=false
+    username: root
+    password: 123456
+
+  cloud:
+    consul:
+      host: 192.168.85.128
+      port: 8500
+      discovery: #注册到consul的服务名称
+        service-name: ${spring.application.name}
+        hostname: 192.168.85.128
+        health-check-path: /health  # 健康检测的url，如果不配置，健康检测一定失败
+        health-check-interval: 10s   # 健康检测时间间隔
+        heartbeat:
+          enabled: true  # 坑所在， springboot2.x 这个一定要开
+        prefer-ip-address: true # 表示注册时使用IP而不是hostname
+
+feign:
+  hystrix:
+    enabled: true
+
+# 调用服务提供者服务名称  ribbon 时用到
+provider: provider01
+#provider: http://192.168.85.128/
+
+#分页pageHelper
+pagehelper:
+  helper-dialect: mysql
+  reasonable: true
+  support-methods-arguments: true
+
