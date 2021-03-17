@@ -1,0 +1,24 @@
+version: '3'
+services:
+  dashboard:
+    image: dashboard:1.0
+    container_name: dashboard
+#    restart: always
+    ports:
+      - 9090:9090
+
+  provider01:
+    image: provider01:1.0
+    container_name: provider01
+#    restart: always
+    ports:
+      - 8771:8771
+
+  comsumer:
+    image: comsumer:1.0   # 镜像名称要加版本号
+    container_name: comsumer
+    #    restart: always
+    ports:
+      - 8772:8772
+
+#  镜像构建后（注意）  在 该目录下 运行  docker-compose -f docker-compose.yml up -d  启动编排运行

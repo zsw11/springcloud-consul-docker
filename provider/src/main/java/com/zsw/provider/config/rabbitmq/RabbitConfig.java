@@ -1,6 +1,7 @@
 package com.zsw.provider.config.rabbitmq;
 
 import org.springframework.amqp.core.Message;
+import org.springframework.amqp.rabbit.connection.CachingConnectionFactory;
 import org.springframework.amqp.rabbit.connection.ConnectionFactory;
 import org.springframework.amqp.rabbit.connection.CorrelationData;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
@@ -44,4 +45,21 @@ public class RabbitConfig {
 
         return rabbitTemplate;
     }
+
+//    @Bean
+//    public org.springframework.amqp.rabbit.connection.ConnectionFactory connectionFactory() {
+//        CachingConnectionFactory connectionFactory = new CachingConnectionFactory();
+//        //设置服务地址
+//        connectionFactory .setHost("192.168.51.34");
+////        connectionFactory .setHost("localhost");
+//        //端口
+//        connectionFactory .setPort(5672);
+//        //设置账号信息，用户名、密码、vhost
+////        connectionFactory .setVirtualHost("testhost");
+//        connectionFactory .setUsername("guest");
+//        connectionFactory .setPassword("guest");
+//
+//        return connectionFactory;
+//    }
+
 }

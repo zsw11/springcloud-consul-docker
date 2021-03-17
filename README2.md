@@ -9,3 +9,5 @@
 
 启动dashboard 项目 : 访问 http://localhost:9090/hystrix，
 输入需要监控的页面： http://localhost:8772/actuator/hystrix.stream
+
+docker 

@@ -8,4 +8,4 @@ VOLUME /tmp
 ADD comsumer-0.0.1-SNAPSHOT.jar app-comsumer.jar
 RUN bash -c 'touch /app.jar'
 # 配置容器启动后执行的命令
-ENTRYPOINT  ["java","-Djava.security.egd=file:/dev/./urandom","-jar","/app.jar"]
+ENTRYPOINT  ["java","-Djava.security.egd=file:/dev/./urandom","-jar","/app-comsumer.jar","--spring.profiles.active=prod"]

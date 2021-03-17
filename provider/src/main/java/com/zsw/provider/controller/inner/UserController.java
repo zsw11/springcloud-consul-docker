@@ -23,7 +23,8 @@ import java.util.List;
  * @date 2021/3/8 11:41
  * @description : user
  */
-@RestController("/user")
+@RestController
+@RequestMapping("/user")
 @Api("用户信息")
 public class UserController {
 

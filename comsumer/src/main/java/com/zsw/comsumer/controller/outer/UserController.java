@@ -17,7 +17,7 @@ import javax.annotation.Resource;
  * @date 2021/3/8 11:41
  * @description : user  调用内部api时，返回结果是服务提供方的返回结果，注意返回类型要一致，服务已经写好，
  */
-@RestController("/user")
+@RestController
 @Api("用户信息 调用内部api")
 public class UserController {
 
