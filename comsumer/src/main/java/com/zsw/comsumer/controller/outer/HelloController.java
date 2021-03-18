@@ -3,6 +3,7 @@ package com.zsw.comsumer.controller.outer;
 import com.zsw.comsumer.service.SyaHelloService;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 
@@ -14,6 +15,7 @@ import javax.annotation.Resource;
  * @description : 测试 hello
  */
 @RestController
+@RequestMapping("/user")
 public class HelloController {
 
     // 服务名

@@ -5,7 +5,7 @@ spring:
   application:
     name: provider01
   datasource:
-    driver-class-name: com.mysql.cj.jdbc.Driver
+    driver-class-name: com.mysql.cj.jdbc.Driver  # 修改可以远程连接mysql配置
     url: jdbc:mysql://192.168.51.34:3306/gen_test?useUnicode=true&characterEncoding=utf8&characterSetResults=utf8&useSSL=false&serverTimezone=UTC
     username: root
     password: 123456
@@ -23,16 +23,17 @@ spring:
           enabled: true  # 坑所在， springboot2.x 这个一定要开
         prefer-ip-address: true # 表示注册时使用IP而不是hostname
 
-#  rabbitmq: #对于rabbitMQ的支持
-#    host: 192.168.51.34
-#    port: 5672
-#    username: guest
-#    password: guest
-#    # ------- 消息确认配置项 --------
-#    # 确认消息已发送到交换机
-#    publisher-confirms: true
-#    # 确认消息已发送队列
-#    publisher-returns: true
+  rabbitmq: #对于rabbitMQ的支持 ,linux环境 如果不加mq配置，则会默认访问localhsot:5672, 并且 mq的guset 用户不能在外网访问
+    host: 192.168.51.34
+    port: 5672
+    username: admin
+    password: 123456
+    # ------- 消息确认配置项 --------
+    # 确认消息已发送到交换机
+    publisher-confirms: true
+    # 确认消息已发送队列
+    publisher-returns: true
+    virtual-host: zsw
 
   redis:
     host: 192.168.51.34

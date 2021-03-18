@@ -1,14 +1,11 @@
 package com.zsw.comsumer.service;
 
-import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
 import com.zsw.comsumer.entity.ResultResp;
 import com.zsw.comsumer.entity.model.User;
 import com.zsw.comsumer.service.hystric.UserServiceHystrix;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
 
 /**
  * @author zsw
@@ -18,14 +15,13 @@ import java.util.List;
  */
 @Service
 @FeignClient(name = "provider01",fallbackFactory = UserServiceHystrix.class) //调用的服务名称
-
 public interface UserService {
     /**
      * 添加用户
      * @param user
      * @return
      */
-    @PostMapping("/add")
+    @PostMapping("user/add")
     ResultResp addUser(@RequestBody User user);
 
     /**
@@ -33,7 +29,7 @@ public interface UserService {
      * @param user
      * @return
      */
-    @PutMapping("/update")
+    @PutMapping("user/update")
     ResultResp update(@RequestBody User user);
 
     /**
@@ -41,14 +37,14 @@ public interface UserService {
      * @param id
      * @return
      */
-    @DeleteMapping("/delete/{id}")
+    @DeleteMapping("user/delete/{id}")
     ResultResp delete(@PathVariable("id") int id);
 
     /**
      * 分页获取用户
      * @return
      */
-    @GetMapping("/get")
+    @GetMapping("user/get")
     ResultResp get(@RequestParam int pageNum,@RequestParam int pageSize);
 
 }

@@ -31,8 +31,7 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
  */
 @Configuration
 @EnableSwagger2
-//@ConditionalOnProperty(prefix = "swagger2",value = {"enabled"},havingValue = "true")
-public class Swagger2Config extends WebMvcConfigurerAdapter {
+public class Swagger2Config implements WebMvcConfigurer {
     @Bean
     public Docket createRestApi() {
         return new Docket(DocumentationType.SWAGGER_2)
