@@ -1,4 +1,4 @@
-# springcloud-consul-docker
+# springcloud-consul-docker   代码见 master 分支
 # MySpringCloud -consul -docker-redis-swagger-rabbitmq-validation
 搭建微服务项目-服务注册、服务发现专题demo 注册中心使用consul
 MySpringCloud-consul -docker 集群
