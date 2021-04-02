@@ -23,6 +23,7 @@ spring:
           enabled: true  # 坑所在， springboot2.x 这个一定要开
         prefer-ip-address: true # 表示注册时使用IP而不是hostname
 
+
   rabbitmq: #对于rabbitMQ的支持
     host: 127.0.0.1
     port: 5672

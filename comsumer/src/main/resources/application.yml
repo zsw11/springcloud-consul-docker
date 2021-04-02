@@ -33,6 +33,7 @@ feign:
   hystrix:
     enabled: true
 
+#暴露hystrix，stream端点:
 management:
   endpoints:
     web:
