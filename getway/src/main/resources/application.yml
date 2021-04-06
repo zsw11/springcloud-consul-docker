@@ -28,11 +28,11 @@ spring:
         - id: host_route2
           uri: lb://provider01  #目标服务地址
           predicates:
-            - Path=/pro
+            - Path=/hello      # 浏览器输入 http://localhost:9091/hello 路由到 provider01/hello
             - After=2018-01-20T06:06:06+08:00[Asia/Shanghai]
         - id: host_route
           uri: http://www.ityouknow.com   #目标服务地址
           predicates:
-            - Path=/test
+            - Path=/test     # 浏览器输入 http://localhost:9091/test，路由到 http://www.ityouknow.com 地址
             - After=2018-01-20T06:06:06+08:00[Asia/Shanghai]
 
