@@ -23,16 +23,41 @@ spring:
           enabled: true  # 坑所在， springboot2.x 这个一定要开
         prefer-ip-address: true #  表示注册时使用IP而不是hostname
 
+        #1，限流方式，比如Hystrix适用线程池隔离，超过线程池的负载，走熔断的逻辑,
+           # 常见的限流方式：
+#          计数器算法：般我们会限制一秒钟的能够通过的请求数，比如限流qps为100（简单粗暴）
+#        漏桶算法：桶满了就拒绝请求，以一定的速度放水（无法应对短时间的突发流量）,在算法实现方面，可以准备一个队列，用来保存请求，另外通过一个线程池（ScheduledExecutorService）来定期从队列中获取请求并执行，可以一次性获取多个并发执行。
+#        令牌桶算法：以一定的速率往桶中放令牌。每次请求调用需要先获取令牌，只有拿到令牌，才有机会继续执行，否则选择选择等待可用的令牌、或者直接拒绝
+        #2，全局权限过滤
+
+
     gateway:
       routes:
-        - id: host_route2
+        - id: host_route2      # 唯一id
           uri: lb://provider01  #目标服务地址
           predicates:
             - Path=/hello      # 浏览器输入 http://localhost:9091/hello 路由到 provider01/hello
             - After=2018-01-20T06:06:06+08:00[Asia/Shanghai]
+          filters:
+            - name: RequestRateLimiter  #限流过滤器
+              args:
+                key-resolver: '#{@uriKeyResolver}'  #用于限流的键的解析器的 Bean 对象的名字
+                redis-rate-limiter.replenishRate: 1       #replenishRate，令牌桶每秒填充平均速率。
+                redis-rate-limiter.burstCapacity: 3       #burstCapacity，令牌桶总容量
+
         - id: host_route
           uri: http://www.ityouknow.com   #目标服务地址
           predicates:
             - Path=/test     # 浏览器输入 http://localhost:9091/test，路由到 http://www.ityouknow.com 地址
             - After=2018-01-20T06:06:06+08:00[Asia/Shanghai]
 
+
+
+
+
+
+#---
+#server:
+#  port: 1000  # 在同一个yml文件里创建两个配置文件
+#spring:
+#  profiles: test

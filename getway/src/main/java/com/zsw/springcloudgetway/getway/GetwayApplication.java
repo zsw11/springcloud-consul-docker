@@ -10,6 +10,10 @@ import reactor.core.publisher.Mono;
 
 @SpringBootApplication  // 不能加入springMVC 依赖 Spring Cloud网关不兼容
 public class GetwayApplication {
+    @Bean
+    public UriKeyResolver uriKeyResolver() {
+        return new UriKeyResolver();
+    }
 
     public static void main(String[] args) {
         SpringApplication.run(GetwayApplication.class, args);
