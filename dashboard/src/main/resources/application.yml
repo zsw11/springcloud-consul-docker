@@ -14,7 +14,7 @@ spring:
         health-check-path: /health  # 健康检测的url，如果不配置，健康检测一定失败
         health-check-interval: 10s    # 健康检测时间间隔
         heartbeat:
-          enabled: true  # \ # 坑所在， springboot2.x 这个一定要开
+          enabled: true   # 坑所在， springboot2.x 这个一定要开
         prefer-ip-address: true #  表示注册时使用IP而不是hostname
 
 management:

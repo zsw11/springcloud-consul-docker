@@ -23,8 +23,8 @@ spring:
           enabled: true  # 坑所在， springboot2.x 这个一定要开
         prefer-ip-address: true # 表示注册时使用IP而不是hostname
 
-  rabbitmq: #对于rabbitMQ的支持 ,linux环境 如果不加mq配置，则会默认访问localhsot:5672, 并且 mq的guset 用户不能在外网访问
-    host: 192.168.51.34
+  rabbitmq: #对于rabbitMQ的支持 ,linux环境 如果不加mq配置，则会默认访问localhsot:5672, 并且 mq登录时guset 用户不能在外网登录访问
+    host: 192.168.51.34 # windows
     port: 5672
     username: admin
     password: 123456
@@ -36,7 +36,7 @@ spring:
     virtual-host: zsw
 
   redis:
-    host: 192.168.51.34
+    host: 192.168.51.34 # windows
     port: 6379
     password: jl2012
     database: 0

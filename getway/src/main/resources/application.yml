@@ -8,20 +8,20 @@ spring:
     host: localhost
     port: 6379
     password: jl2012
-    database: 0
+    database: 1
 
   cloud:
     consul:
       host: 192.168.85.128  # linux
       port: 8500
-      discovery: #\u6CE8\u518C\u5230consul\u7684\u670D\u52A1\u540D\u79F0
+      discovery:  #注册到consul的服务名称
         service-name: ${spring.application.name}
         hostname: 192.168.85.128
-        health-check-path: /health  # \u5065\u5EB7\u68C0\u6D4B\u7684url\uFF0C\u5982\u679C\u4E0D\u914D\u7F6E\uFF0C\u5065\u5EB7\u68C0\u6D4B\u4E00\u5B9A\u5931\u8D25
-        health-check-interval: 10s   # \u5065\u5EB7\u68C0\u6D4B\u65F6\u95F4\u95F4\u9694
+        health-check-path: /health  # 健康检测的url，如果不配置，健康检测一定失败
+        health-check-interval: 10s   # 健康检测时间间隔
         heartbeat:
-          enabled: true  # \u5FC3\u8DF3   \u5751\u6240\u5728\uFF0Cspringboot2.x \u8FD9\u4E2A\u4E00\u5B9A\u8981\u5F00
-        prefer-ip-address: true # \u8868\u793A\u6CE8\u518C\u65F6\u4F7F\u7528IP\u800C\u4E0D\u662Fhostname
+          enabled: true  # 坑所在， springboot2.x 这个一定要开
+        prefer-ip-address: true #  表示注册时使用IP而不是hostname
 
     gateway:
       routes:
