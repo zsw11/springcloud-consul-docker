@@ -6,7 +6,7 @@ spring:
     name: provider01
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver  # 修改可以远程连接mysql配置
-    url: jdbc:mysql://192.168.51.34:3306/gen_test?useUnicode=true&characterEncoding=utf8&characterSetResults=utf8&useSSL=false&serverTimezone=UTC
+    url: jdbc:mysql://192.168.51.34:3306/springcloud_consul?useUnicode=true&characterEncoding=utf8&characterSetResults=utf8&useSSL=false&serverTimezone=UTC
     username: root
     password: 123456
 

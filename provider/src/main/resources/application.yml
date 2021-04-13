@@ -4,19 +4,19 @@ server:
 spring:
   application:
     name: provider01
-  datasource:
-    driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/gen_test?useUnicode=true&characterEncoding=utf8&characterSetResults=utf8&useSSL=false&serverTimezone=UTC
-    username: root
-    password: 123456
+#  datasource:
+#    driver-class-name: com.mysql.cj.jdbc.Driver
+#    url: jdbc:mysql://localhost:3306/springcloud_consul?useUnicode=true&characterEncoding=utf8&characterSetResults=utf8&useSSL=false&serverTimezone=UTC
+#    username: root
+#    password: 123456
 
   cloud:
     consul:
-      host: 192.168.85.128
+      host: ${linux}
       port: 8500
       discovery: #注册到consul的服务名称
         service-name: ${spring.application.name}
-        hostname: 192.168.85.128
+        hostname: ${linux}
         health-check-path: /health  # 健康检测的url，如果不配置，健康检测一定失败
         health-check-interval: 10s   # 健康检测时间间隔
         heartbeat:
@@ -46,10 +46,14 @@ mybatis:
   configuration:
     log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
   mapper-locations: classpath:mapper/*.xml   #指定mapper.xml位置
-
+# 日志输出水平
+logging:
+  level:
+    root: info
 #分页pageHelper
 pagehelper:
   helper-dialect: mysql
   reasonable: true
   support-methods-arguments: true
 
+linux: 192.168.85.128

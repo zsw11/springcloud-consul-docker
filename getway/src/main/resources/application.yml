@@ -16,7 +16,7 @@ spring:
       port: 8500
       discovery:  #注册到consul的服务名称
         service-name: ${spring.application.name}
-        hostname: 192.168.85.128
+        hostname: ${linux}
         health-check-path: /health  # 健康检测的url，如果不配置，健康检测一定失败
         health-check-interval: 10s   # 健康检测时间间隔
         heartbeat:
@@ -52,7 +52,7 @@ spring:
             - After=2018-01-20T06:06:06+08:00[Asia/Shanghai]
 
 
-
+linux: 192.168.85.128
 
 
 
