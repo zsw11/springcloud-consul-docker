@@ -46,7 +46,7 @@ public class RedisController {
         return ResultResp.success("缓存成功");
     }
 
-    @ApiOperation(value = "后去缓存的用户")
+    @ApiOperation(value = "获取缓存的用户")
     @GetMapping("getUser")
     public ResultResp getUser() {
         User user1 = (User)redisTemplate.opsForList().leftPop("user");

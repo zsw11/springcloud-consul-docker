@@ -1,9 +1,5 @@
 package com.zsw.provider.config;
 
-import com.fasterxml.jackson.annotation.JsonAutoDetect;
-import com.fasterxml.jackson.annotation.PropertyAccessor;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.cache.CacheManager;
 import org.springframework.cache.annotation.CachingConfigurerSupport;
@@ -14,7 +10,6 @@ import org.springframework.data.redis.cache.RedisCacheWriter;
 import org.springframework.data.redis.connection.RedisConnectionFactory;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.serializer.GenericJackson2JsonRedisSerializer;
-import org.springframework.data.redis.serializer.Jackson2JsonRedisSerializer;
 import org.springframework.data.redis.serializer.RedisSerializationContext;
 import org.springframework.data.redis.serializer.StringRedisSerializer;
 
@@ -51,7 +46,7 @@ public class RedisConfig extends CachingConfigurerSupport {
         // key序列化
         redisTemplate.setKeySerializer(STRING_SERIALIZER);
         // value序列化
-        redisTemplate.setValueSerializer(JACKSON__SERIALIZER);
+        redisTemplate.setValueSerializer(STRING_SERIALIZER);
         // Hash key序列化
         redisTemplate.setHashKeySerializer(STRING_SERIALIZER);
         // Hash value序列化

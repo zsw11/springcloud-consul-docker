@@ -1,15 +1,28 @@
 package com.zsw.provider.controller.mq;
 
+import com.rabbitmq.client.Channel;
+import com.rabbitmq.client.Connection;
+import com.rabbitmq.client.ConnectionFactory;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import org.springframework.amqp.core.Message;
 import org.springframework.amqp.rabbit.annotation.RabbitHandler;
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
+import org.springframework.amqp.rabbit.connection.CorrelationData;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.client.RestTemplate;
+
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.UUID;
+import java.util.concurrent.TimeUnit;
+import java.util.concurrent.TimeoutException;
 
 /**
  * @author zsw
@@ -21,12 +34,21 @@ import org.springframework.web.bind.annotation.RestController;
 public class RabbitMqController {
     @Autowired
     private RabbitTemplate rabbitTemplate;
+    @Autowired
+    RedisTemplate redisTemplate;
 
     @ApiOperation("发送消息到消息队列 DirectExchange模式")
     @PostMapping("/send")
     public String send() {
         String msg = "hello";
-        rabbitTemplate.convertAndSend("myDirectExchange", "my.direct.routing", msg); // 指定 交换机和路由 发送到 myDirectQueue 队列上
+        String msgId = UUID.randomUUID().toString();
+        rabbitTemplate.convertAndSend("myDirectExchange", "my.direct.routing", msg,new CorrelationData(msgId)); // 指定 交换机和路由 发送到 myDirectQueue 队列上
+        //msgId和message关系保存redis。用于补偿
+        ArrayList<String> strings = new ArrayList<>();
+        strings.add("myDirectExchange");
+        strings.add("my.direct.routing");
+        strings.add(msg);
+        redisTemplate.opsForValue().set(msgId,strings,3, TimeUnit.MINUTES);
         return "success";
     }
 

@@ -7,14 +7,17 @@ import org.springframework.amqp.core.Queue;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
+import java.util.HashMap;
+import java.util.Map;
+
 /**
  * @author zsw
  * @date 2021/3/11 17:42
  * @description :
  * DirectExchange
- * 直连型交换机，根据消息携带的路由键，将消息转发给对应的队列
+ * 直连型交换机，根据消息携带的路由键，将消息转发给对应的队列   转移到了  RabbitQueueAndExchange 里面
  */
-@Configuration
+//@Configuration
 public class DirectRabbitConfig {
     /**
      * 交换机

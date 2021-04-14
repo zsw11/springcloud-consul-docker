@@ -12,7 +12,7 @@ import org.springframework.context.annotation.Configuration;
  * @date 2021/3/11 18:18
  * @description : 消费者配置监听
  */
-@Configuration
+//@Configuration
 public class MessageListenerConfig {
 
     @Autowired
