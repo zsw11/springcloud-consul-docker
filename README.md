@@ -34,4 +34,5 @@ rabbitmq 使用了3中交换机模式demo， 直连交换机，扇形交换机 �
  减少了客户端与各个微服务之间的交互次数。
  
  Spring Cloud Gateway
- 
+
+整合 sharding jdbc 分库分表， 两个主库，四个从库，user_0到 user_9
