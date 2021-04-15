@@ -30,17 +30,20 @@ spring:
     username: guest
     password: guest
     # ------- 消息确认配置项 --------
-    # 确认消息已发送到交换机
+    # 开启confirms 回调
     publisher-confirms: true
+    # 开启return 回调
+    publisher-returns: true
     listener:
       simple:
-        acknowledge-mode: manual  # 手动确认消息是否被消费
+        acknowledge-mode: manual  # 开启手动确认消息是否被消费模式
+
 
   redis:
     host: localhost
     port: 6379
     password: jl2012
-    database: 0
+    database: 1
 
 #控制台打印sql日志
 mybatis:

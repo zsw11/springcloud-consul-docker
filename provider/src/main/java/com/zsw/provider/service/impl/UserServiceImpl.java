@@ -6,6 +6,7 @@ import com.zsw.provider.entity.model.User;
 import com.zsw.provider.mapper.UserMapper;
 import com.zsw.provider.service.UserService;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
@@ -17,7 +18,7 @@ import java.util.List;
  * @description :  加入服务降级的功能
  */
 @Service
-@Transactional
+@Transactional(propagation = Propagation.REQUIRED)
 public class UserServiceImpl implements UserService {
 
     @Resource

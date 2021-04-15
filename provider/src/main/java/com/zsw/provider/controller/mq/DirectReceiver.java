@@ -31,7 +31,7 @@ public class DirectReceiver {
             // 手动确认 删除队列消息
             channel.basicAck(msg.getMessageProperties().getDeliveryTag(), true);
         }catch (Exception e){
-            log.error("消费消息失败了【】error："+ msg);
+            log.error("消费消息失败了,error："+ msg);
             // 放到死信队列
             channel.basicNack(msg.getMessageProperties().getDeliveryTag(), false,false);
             // 将消息重新放回队列  multiple=false 不从队列删除

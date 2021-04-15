@@ -20,6 +20,7 @@ import org.springframework.web.client.RestTemplate;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.UUID;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.TimeoutException;
@@ -33,7 +34,7 @@ import java.util.concurrent.TimeoutException;
 @Api(" Rabbitmq")
 public class RabbitMqController {
     @Autowired
-    private RabbitTemplate rabbitTemplate;
+    RabbitTemplate rabbitTemplate;
     @Autowired
     RedisTemplate redisTemplate;
 

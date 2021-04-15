@@ -27,7 +27,7 @@ public class RabbitConfig {
     RedisTemplate redisTemplate;
 
     @Bean
-    public RabbitTemplate createRabbitTemplate(ConnectionFactory connectionFactory) {
+    public RabbitTemplate rabbitTemplate(ConnectionFactory connectionFactory) {
         RabbitTemplate rabbitTemplate = new RabbitTemplate();
         rabbitTemplate.setConnectionFactory(connectionFactory);
 
