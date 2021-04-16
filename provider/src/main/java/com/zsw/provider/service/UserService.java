@@ -1,6 +1,6 @@
 package com.zsw.provider.service;
 
-import com.zsw.provider.entity.model.User;
+import com.zsw.provider.entity.model.UserOld;
 
 import java.util.List;
 
@@ -13,17 +13,17 @@ import java.util.List;
 public interface UserService {
     /**
      * 添加用户
-     * @param user
+     * @param userOld
      * @return
      */
-    int addUser(User user);
+    int addUser(UserOld userOld);
 
     /**
      * 更新用户
-     * @param user
+     * @param userOld
      * @return
      */
-    int update(User user);
+    int update(UserOld userOld);
 
     /**
      * 删除用户
@@ -36,11 +36,11 @@ public interface UserService {
      * 获取用户
      * @return
      */
-    List<User> get(int pageNum, int pageSize);
+    List<UserOld> get(int pageNum, int pageSize);
 
     /**
      * 根据id 查找用户
      */
-    User selectById(int id);
+    UserOld selectById(int id);
 
 }

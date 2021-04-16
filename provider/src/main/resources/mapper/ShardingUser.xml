@@ -8,12 +8,13 @@
         <result column="password" property="password" jdbcType="VARCHAR" />
     </resultMap>
     
-    <insert id="addUser">
+    <insert id="addUser" parameterType="com.zsw.provider.entity.model.ShardingUser" keyProperty="id">
         INSERT INTO user (
-          id, username, password
+        id,
+          username, password
         )
         VALUES (
-        #{id,jdbcType=INTEGER},
+       #{id,jdbcType=INTEGER},
         #{username,jdbcType=VARCHAR},
         #{password,jdbcType=VARCHAR}
         )

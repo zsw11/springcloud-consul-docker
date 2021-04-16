@@ -1,6 +1,7 @@
 package com.zsw.provider.mapper;
 
-import com.zsw.provider.entity.model.User;
+import com.zsw.provider.entity.model.UserOld;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -11,13 +12,13 @@ import java.util.List;
  */
 public interface UserMapper {
 
-    int addUser(User user);
+    int addUser(UserOld userOld);
 
-    int updateUser(User user);
+    int updateUser(UserOld userOld);
 
-    int delete(int id);
+    int delete(@Param("id") int id);
 
-    List<User> get();
+    List<UserOld> get();
 
-    User selectById(int id);
+    UserOld selectById(@Param("id")int id);
 }

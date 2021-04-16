@@ -3,7 +3,7 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.zsw.provider.mapper.UserMapper">
-    <resultMap id="BaseResultMap" type="com.zsw.provider.entity.model.User">
+    <resultMap id="BaseResultMap" type="com.zsw.provider.entity.model.UserOld">
         <id column="id" jdbcType="BIGINT" property="id" />
         <result column="name" jdbcType="VARCHAR" property="name" />
         <result column="address" jdbcType="VARCHAR" property="address" />
@@ -17,28 +17,28 @@
     </sql>
 
 
-    <insert id="addUser" parameterType="com.zsw.provider.entity.model.User" useGeneratedKeys="true" keyProperty="id">
-        insert into user (name,address,phone,email,blog,age) values
+    <insert id="addUser" parameterType="com.zsw.provider.entity.model.UserOld"  useGeneratedKeys="true" keyProperty="id">
+        insert into user_old (name,address,phone,email,blog,age) values
         (#{name},#{address},#{phone},#{email},#{blog},#{age});
     </insert>
 
-    <update id="updateUser" parameterType="com.zsw.provider.entity.model.User">
-        update user set name=#{name},address=#{address},phone=#{phone},email=#{email},blog=#{blog},age=#{age}
-         where user.id= #{id};
+    <update id="updateUser" parameterType="com.zsw.provider.entity.model.UserOld">
+        update user_old set name=#{name},address=#{address},phone=#{phone},email=#{email},blog=#{blog},age=#{age}
+         where user_old.id= #{id};
     </update>
 
     <delete id="delete" parameterType="int">
-        delete  from user where user.id=#{id}
+        delete  from user_old where user_old.id=#{id}
     </delete>
 
-    <select id="get" resultType="com.zsw.provider.entity.model.User">
+    <select id="get" resultType="com.zsw.provider.entity.model.UserOld">
         select <include refid="sql1"></include>
-        from user
+        from user_old
     </select>
 
-    <select id="selectById" resultType="com.zsw.provider.entity.model.User">
+    <select id="selectById" resultType="com.zsw.provider.entity.model.UserOld">
         select <include refid="sql1"></include>
-        from user where id =#{id}
+        from user_old where id =#{id}
     </select>
 
 </mapper>

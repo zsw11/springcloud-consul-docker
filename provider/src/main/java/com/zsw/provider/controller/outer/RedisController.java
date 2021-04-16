@@ -1,18 +1,15 @@
 package com.zsw.provider.controller.outer;
 
 import com.zsw.provider.entity.ResultResp;
-import com.zsw.provider.entity.model.User;
+import com.zsw.provider.entity.model.UserOld;
 import com.zsw.provider.service.UserService;
 import io.swagger.annotations.ApiOperation;
-import lombok.extern.log4j.Log4j;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.data.redis.core.HashOperations;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.client.RestTemplate;
 
 import javax.annotation.Resource;
 import java.util.List;
@@ -38,9 +35,9 @@ public class RedisController {
     @ApiOperation(value = "分页缓存用户 1~10")
     @GetMapping("user")
     public ResultResp cacheUser() {
-        List<User> users = userService.get(1, 10);
-        for (User user: users) {
-            redisTemplate.opsForList().leftPush("user",user);
+        List<UserOld> userOlds = userService.get(1, 10);
+        for (UserOld userOld : userOlds) {
+            redisTemplate.opsForList().leftPush("user", userOld);
             redisTemplate.expire("user", 3, TimeUnit.HOURS);
         }
         return ResultResp.success("缓存成功");
@@ -49,9 +46,9 @@ public class RedisController {
     @ApiOperation(value = "获取缓存的用户")
     @GetMapping("getUser")
     public ResultResp getUser() {
-        User user1 = (User)redisTemplate.opsForList().leftPop("user");
-        System.out.println(user1);
-        return ResultResp.success(user1);
+        UserOld userOld1 = (UserOld)redisTemplate.opsForList().leftPop("user");
+        System.out.println(userOld1);
+        return ResultResp.success(userOld1);
     }
 
     @ApiOperation(value = "清理redis缓存", notes="清理redis缓存")

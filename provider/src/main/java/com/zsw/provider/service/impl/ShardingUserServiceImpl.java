@@ -18,7 +18,7 @@ public class ShardingUserServiceImpl implements ShardingUserService {
 
     @Override
     public Integer addUser(ShardingUser user) {
-
+//        int i = user.getId()/0;
         // 强制路由主库
 //        HintManager.getInstance().setMasterRouteOnly();
         return userRepository.addUser(user);

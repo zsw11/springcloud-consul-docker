@@ -1,8 +1,7 @@
 package com.zsw.provider.service.impl;
 
 import com.github.pagehelper.PageHelper;
-import com.netflix.hystrix.HystrixCommand;
-import com.zsw.provider.entity.model.User;
+import com.zsw.provider.entity.model.UserOld;
 import com.zsw.provider.mapper.UserMapper;
 import com.zsw.provider.service.UserService;
 import org.springframework.stereotype.Service;
@@ -25,15 +24,15 @@ public class UserServiceImpl implements UserService {
     private UserMapper userMapper;
 
     @Override
-    public int addUser(User user) {
-        int i = userMapper.addUser(user); //这里可以直接传对象
-        return user.getId(); //返回新增数据的id
+    public int addUser(UserOld userOld) {
+        int i = userMapper.addUser(userOld); //这里可以直接传对象
+        return userOld.getId(); //返回新增数据的id
     }
 
     @Override
-    public int update(User user) {
-        userMapper.updateUser(user);
-        return user.getId();
+    public int update(UserOld userOld) {
+        userMapper.updateUser(userOld);
+        return userOld.getId();
 
     }
 
@@ -44,13 +43,13 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public List<User> get(int pageNum, int pageSize) {
+    public List<UserOld> get(int pageNum, int pageSize) {
         PageHelper.startPage(pageNum, pageSize);
        return userMapper.get();
     }
 
     @Override
-    public User selectById(int id) {
+    public UserOld selectById(int id) {
         return userMapper.selectById(id);
     }
 

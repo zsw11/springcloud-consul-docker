@@ -20,7 +20,7 @@ import java.io.Serializable;
 @Data
 @ApiModel
 @Component
-public class User implements Serializable {
+public class UserOld implements Serializable {
 
     private int id;
 

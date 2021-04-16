@@ -5,18 +5,13 @@ import com.zsw.provider.service.ShardingUserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Arrays;
 import java.util.List;
 
 @RestController
 public class ShardingUserController {
-
-    Logger logger= LoggerFactory.getLogger(ShardingUserController.class);
 
     @Autowired
     private ShardingUserService userService;
@@ -28,17 +23,18 @@ public class ShardingUserController {
         return list;
     }
 
-    @GetMapping("/add")
-    public Object add() {
-
-        for(int i=1;i<101;i++) {
-            ShardingUser user = new ShardingUser();
-            user.setId(i);
-            user.setUsername("forezp"+(i));
-            user.setPassword("1233edwd");
-           long resutl = userService.addUser(user);
-            logger.info("insert:"+user.toString()+" result:"+resutl);
-        }
+    @PostMapping("/add")
+    public Object add(@RequestBody ShardingUser shardingUser) {
+        userService.addUser(shardingUser);
+        // 初始化
+//        for(int i=1;i<101;i++) {
+//            ShardingUser user = new ShardingUser();
+//            user.setId(i);
+//            user.setUsername("forezp"+(i));
+//            user.setPassword("1233edwd");
+//           long resutl = userService.addUser(user);
+//            logger.info("insert:"+user.toString()+" result:"+resutl);
+//        }
         return "ok";
     }
 
