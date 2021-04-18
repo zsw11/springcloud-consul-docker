@@ -20,7 +20,7 @@ docker exec -it consul1 consul members   # 查看集群信息
 
 启动项目： 服务提供者swagger地址http://localhost:8771/swagger-ui.html 服务消费者 swagger 地址 http://localhost:8772/swagger-ui.html
 
-下载rabbitmq 配置完启动项目，访问地址： http://localhost:15672/#/exchanges
+下载rabbitmq 配置完启动项目，访问地址： http://localhost:15672/#/exchanges   rabbit访问界面端口为15671
 rabbitmq 使用了3中交换机模式demo， 直连交换机，扇形交换机 ，主题交换机
 
 整合reids validtion
@@ -33,6 +33,6 @@ rabbitmq 使用了3中交换机模式demo， 直连交换机，扇形交换机 �
  易于认证。可在微服务网关上进行认证，然后再将请求转发到后端的微服务，而无须在每个微服务中进行认证。
  减少了客户端与各个微服务之间的交互次数。
  
- Spring Cloud Gateway
+ 搭建Spring Cloud Gateway 项目
 
 整合 sharding jdbc 分库分表， 两个主库，四个从库，user_0到 user_9
