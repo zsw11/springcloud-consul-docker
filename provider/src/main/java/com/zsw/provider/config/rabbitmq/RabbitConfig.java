@@ -45,9 +45,11 @@ public class RabbitConfig {
                     // 从缓存中获取数据，进行补偿重试机制
                     ArrayList<String> msg = (ArrayList<String>) redisTemplate.opsForValue().get(correlationData.getId());
                     rabbitTemplate.convertAndSend(msg.get(0), msg.get(1), msg.get(2));
-                    redisTemplate.delete(correlationData.getId());
                     System.out.println(msg);
+                }else { // 成功的话
+                    redisTemplate.delete(correlationData.getId());
                 }
+
             }
         });
 

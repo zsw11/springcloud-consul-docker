@@ -42,7 +42,7 @@ public class TopicRabbitConfig {
     }
 
     /**
-     * 绑定路由键为topic.#规则
+     * 绑定路由键为topic.#规则    # 表示，匹配时后面可有一级多级，可无。 * 必须有一级。
      */
     @Bean
     public Binding binding_02() {

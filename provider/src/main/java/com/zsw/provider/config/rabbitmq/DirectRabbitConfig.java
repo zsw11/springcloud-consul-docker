@@ -17,7 +17,7 @@ import java.util.Map;
  * DirectExchange
  * 直连型交换机，根据消息携带的路由键，将消息转发给对应的队列   转移到了  RabbitQueueAndExchange 里面
  */
-//@Configuration
+//@Configuration     转移到了  RabbitQueueAndExchange 里面
 public class DirectRabbitConfig {
     /**
      * 交换机

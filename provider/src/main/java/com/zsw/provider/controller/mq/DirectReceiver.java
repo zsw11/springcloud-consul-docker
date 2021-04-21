@@ -25,16 +25,16 @@ public class DirectReceiver {
     @RabbitListener(queues = "myDirectQueue") // 队列
     public void process(Message msg, Channel channel) throws IOException {
         try{
-            // 先幂等性判断 是否重复消费
+            // 先幂等性判断 是否重复消费 可以用redis
 //            int a = 1 / 0;  //抛异常
             System.out.println("消费到消息"+msg);
             // 手动确认 删除队列消息
             channel.basicAck(msg.getMessageProperties().getDeliveryTag(), true);
         }catch (Exception e){
             log.error("消费消息失败了,error："+ msg);
-            // 放到死信队列
+            // 放到死信队列 requeue=false 重发到队列=false
             channel.basicNack(msg.getMessageProperties().getDeliveryTag(), false,false);
-            // 将消息重新放回队列  multiple=false 不从队列删除
+            // 将消息重新放回队列 死循环 multiple=false不从队列删除
 //            channel.basicNack(msg.getMessageProperties().getDeliveryTag(),false,true);
         }
 

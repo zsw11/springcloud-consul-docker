@@ -47,4 +47,12 @@ public class ShardingUser implements Serializable ,Comparable{
         ShardingUser u= (ShardingUser) o;
         return this.id.compareTo(u.id);
     }
+    public ShardingUser() {
+    }
+
+    public ShardingUser(Integer id, String username, String password) {
+        this.id = id;
+        this.username = username;
+        this.password = password;
+    }
 }
