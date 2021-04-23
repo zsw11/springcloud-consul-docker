@@ -41,12 +41,18 @@ spring:
 #          enabled: true  # 开启消费者重试
 #          max-attempts: 3  # 3次
 
-
   redis:
     host: localhost
     port: 6379
     password: jl2012
     database: 1
+
+
+  # 修改es健康检查地址
+  elasticsearch:
+    rest:
+      uris:  ["http://192.168.85.128:9200"]
+
 
 #控制台打印sql日志
 mybatis:

@@ -119,6 +119,13 @@
             <version>${elasticsearch.version}</version>
         </dependency>
 
+        <!--        解析网页数据-->
+        <dependency>
+            <groupId>org.jsoup</groupId>
+            <artifactId>jsoup</artifactId>
+            <version>1.10.2</version>
+        </dependency>
+
         <!--PageHelper-->
         <dependency>
             <groupId>com.github.pagehelper</groupId>
