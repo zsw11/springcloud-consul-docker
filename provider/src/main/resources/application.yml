@@ -1,4 +1,5 @@
 # 端口
+linux: 192.168.85.128
 server:
   port: 8771
 spring:
@@ -69,4 +70,15 @@ pagehelper:
   reasonable: true
   support-methods-arguments: true
 
-linux: 192.168.85.128
+xxl:
+  job:
+    admin:
+      addresses: http://localhost:8181/xxl-job-admin
+    accessToken:
+    executor:
+      appname: test   #执行器名称
+      address:
+      ip:
+      port: 9999
+      logpath:
+      logretentiondays: 3
