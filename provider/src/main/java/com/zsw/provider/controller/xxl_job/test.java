@@ -12,9 +12,10 @@ import org.springframework.stereotype.Controller;
  */
 @Controller
 public class test {
-    @XxlJob("hello")
-    public ReturnT<String> execute(String param) {
+    @XxlJob("helloJob")
+    public ReturnT<String> execute(String param) throws Exception{
         XxlJobLogger.log("hello" + param);
+//        int a = 1 / 0;
         System.out.println("hello" + param);
         return ReturnT.SUCCESS;
     }

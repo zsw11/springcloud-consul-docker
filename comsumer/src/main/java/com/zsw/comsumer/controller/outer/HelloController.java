@@ -1,6 +1,7 @@
 package com.zsw.comsumer.controller.outer;
 
 import com.zsw.comsumer.service.SyaHelloService;
+import com.zsw.provider.controller.api.SyaHelloServiceApi;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -26,6 +27,9 @@ public class HelloController {
     @Resource
     private SyaHelloService syaHelloService;
 
+    @Resource
+    private SyaHelloServiceApi syaHelloServiceApi;
+
     // 基于 Ribbon 测试
     @Resource
     private RestTemplate restTemplate;
@@ -38,5 +42,14 @@ public class HelloController {
     @GetMapping("ribbon/hello")
     public String sayHelloRest(){
         return restTemplate.getForObject("http://"+REST_URL_PRE + "/hello",String.class);
+    }
+
+    /**
+     * 通过api 的方式调用业务，把业务和消费者分离
+     * @return
+     */
+    @GetMapping("api/hello")
+    public String sayHelloByApi(){
+        return syaHelloServiceApi.sayHello();
     }
 }

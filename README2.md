@@ -20,4 +20,8 @@ docker run --name elasticsearch -p 9200:9200 -p 9300:9300  -e "discovery.type=si
 
 kibana : docker run --name kibana --link=elasticsearch:7.6.2  -p 5601:5601 -d kibana:7.6.2
 
+整合 xxl-job
+                   spring.mail.username=546232194@qq.com
+发送邮箱报警的密码：spring.mail.password=ervmowigfhdbbcce
+
 
