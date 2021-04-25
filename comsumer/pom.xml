@@ -31,6 +31,13 @@
             <version>0.0.1-SNAPSHOT</version>
         </dependency>
 
+        <!--默认打jar,所以才可以引入，如果dashborad打包类型我pom则不可以用-->
+        <dependency>
+            <groupId>com.zsw</groupId>
+            <artifactId>dashboard</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+        </dependency>
+
 <!--        <dependency>-->
 <!--            <groupId>org.springframework.cloud</groupId>-->
 <!--            <artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>-->
