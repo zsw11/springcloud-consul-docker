@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.*;
  * @description :  注意这里的返回值必须和 服务提供方的controller 一致
  * 这里需要使用fallbackFactory
  */
-@Service
 @FeignClient(name = "provider01",fallbackFactory = UserServiceHystrix.class) //调用的服务名称
 public interface UserService {
     /**

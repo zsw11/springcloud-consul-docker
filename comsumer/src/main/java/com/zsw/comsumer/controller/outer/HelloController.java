@@ -1,8 +1,7 @@
 package com.zsw.comsumer.controller.outer;
 
-import com.zsw.comsumer.service.SyaHelloService;
 import com.zsw.provider.controller.api.SyaHelloServiceApi;
-import org.springframework.beans.factory.annotation.Value;
+import com.zsw.provider.controller.api.SyaHelloServiceImpl;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -23,23 +22,23 @@ public class HelloController {
 //    @Value("${provider}")
     private static final String REST_URL_PRE = "provider01";
 
-    // 基于Feign 测试
-    @Resource
-    private SyaHelloService syaHelloService;
+//    // 基于Feign 测试
+//    @Resource
+//    private SyaHelloService syaHelloService;
 
     @Resource
-    private SyaHelloServiceApi syaHelloServiceApi;
+    private SyaHelloServiceImpl syaHelloServiceImpl;
 
     // 基于 Ribbon 测试
     @Resource
     private RestTemplate restTemplate;
 
-    @GetMapping("feign/hello")
-    public String sayHello(){
-        return syaHelloService.sayHello();
-    }
+//    @GetMapping("/feign/hello")
+//    public String sayHello(){
+//        return syaHelloService.sayHello();
+//    }
 
-    @GetMapping("ribbon/hello")
+    @GetMapping("/ribbon/hello")
     public String sayHelloRest(){
         return restTemplate.getForObject("http://"+REST_URL_PRE + "/hello",String.class);
     }
@@ -48,8 +47,8 @@ public class HelloController {
      * 通过api 的方式调用业务，把业务和消费者分离
      * @return
      */
-    @GetMapping("api/hello")
+    @GetMapping("/api/hello")
     public String sayHelloByApi(){
-        return syaHelloServiceApi.sayHello();
+        return syaHelloServiceImpl.sayHello();
     }
 }

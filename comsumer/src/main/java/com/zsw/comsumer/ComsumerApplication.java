@@ -13,7 +13,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 
 @SpringBootApplication
-@EnableFeignClients
+@EnableFeignClients(basePackages="com.zsw")
 @EnableDiscoveryClient //支持服务的发现
 @EnableCircuitBreaker
 @EnableHystrix
