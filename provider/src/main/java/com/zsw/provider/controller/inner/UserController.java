@@ -1,6 +1,7 @@
 package com.zsw.provider.controller.inner;
 
 
+import com.zsw.provider.controller.api.UserApi;
 import com.zsw.provider.entity.ResultResp;
 import com.zsw.provider.entity.model.ShardingUser;
 import com.zsw.provider.entity.model.UserOld;

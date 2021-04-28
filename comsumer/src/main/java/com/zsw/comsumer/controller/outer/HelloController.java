@@ -1,11 +1,12 @@
 package com.zsw.comsumer.controller.outer;
 
-import com.zsw.provider.controller.api.SyaHelloServiceApi;
-import com.zsw.provider.controller.api.SyaHelloServiceImpl;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import com.zsw.provider.controller.api.UploadFeignClient;
+import com.zsw.provider.controller.api.UserApi;
+import com.zsw.provider.entity.ResultResp;
+import io.swagger.annotations.ApiOperation;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.annotation.Resource;
 
@@ -14,6 +15,7 @@ import javax.annotation.Resource;
  * @date 2021/3/10 17:35
  * @description : 测试 hello
  */
+@ApiOperation("hello")
 @RestController
 @RequestMapping("/user")
 public class HelloController {
@@ -26,12 +28,18 @@ public class HelloController {
 //    @Resource
 //    private SyaHelloService syaHelloService;
 
-    @Resource
-    private SyaHelloServiceImpl syaHelloServiceImpl;
+//    @Resource
+//    private SyaHelloServiceImpl syaHelloServiceImpl;
 
     // 基于 Ribbon 测试
     @Resource
     private RestTemplate restTemplate;
+
+    @Resource
+    private UploadFeignClient uploadFeignClient;
+
+    @Resource
+    UserApi userApi;
 
 //    @GetMapping("/feign/hello")
 //    public String sayHello(){
@@ -47,8 +55,25 @@ public class HelloController {
      * 通过api 的方式调用业务，把业务和消费者分离
      * @return
      */
-    @GetMapping("/api/hello")
-    public String sayHelloByApi(){
-        return syaHelloServiceImpl.sayHello();
+//    @GetMapping("/api/hello")
+//    public String sayHelloByApi(){
+//        return syaHelloServiceImpl.sayHello();
+//    }
+
+    /**
+     * 使用feign上传
+     * @param file
+     * @return
+     */
+    @PostMapping("/upload")
+    public String handleFileUpload(@RequestParam(value = "file") MultipartFile file) {
+        String s = uploadFeignClient.handleFileUpload(file);
+        System.out.println("file-------------"+s);
+        return s;
+    }
+
+    @GetMapping("/api/getUser")
+    public ResultResp getUser(){
+        return userApi.getUser(1,10);
     }
 }

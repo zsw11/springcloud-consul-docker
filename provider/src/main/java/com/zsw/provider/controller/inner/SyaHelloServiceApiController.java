@@ -1,11 +1,7 @@
-package com.zsw.provider.controller.api;
+package com.zsw.provider.controller.inner;
 
+import com.zsw.provider.controller.api.SyaHelloServiceApi;
 import io.swagger.annotations.ApiOperation;
-import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Controller;
-import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
@@ -16,7 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 // 以后这个实现类可以SayHelloServiceApiHystrix 分开到两个项目
 @ApiOperation("Api")
 @RestController
-public class SyaHelloServiceImpl implements SyaHelloServiceApi  {
+public class SyaHelloServiceApiController implements SyaHelloServiceApi {
     @Override
     public String sayHello() {
         return "say Api hello";

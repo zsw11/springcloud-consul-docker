@@ -19,6 +19,36 @@ docker run --name elasticsearch -p 9200:9200 -p 9300:9300  -e "discovery.type=si
 ------ 如果出现容器秒退，启动失败，查看启用日志，可能需要就给挂载目录赋予权限 如:chmod 777 /home/elasticsearch/plugins
 
 kibana : docker run --name kibana --link=elasticsearch:7.6.2  -p 5601:5601 -d kibana:7.6.2
+修改/usr/share/kibana/config/kibana.yml 文件 
+# 操作界面语言设置为中文
+i18n.locale: "zh-CN"
+
+logstash:linux 内存小了会连接不上ElasticSearch
+docker pull logstash-7.6.2
+docker run -di -p 5044:5044 -v /home/elk/logstash.conf:/usr/share/logstash/pipeline/logstash.conf --name logstash logstash:7.6.2
+logstash.conf：logstash.conf配置
+input {
+    tcp {
+        port => 5044
+        mode => "server"
+        tags => ["tags"]
+                # 输入为json数据
+        codec => json_lines
+    }
+}
+filter {
+
+}
+output {
+        # elasticsearch配置
+        elasticsearch {
+                hosts => ["http://192.168.2.134:9200"]
+                # 索引名称，没有会自动创建
+                index => "logstash-%{[appname]}-%{+YYYY.MM.dd}"
+        }
+}
+还有 这个文件 logstash.yml 进入logstash容器修改   hosts => ["http://192.168.2.134:9200"]
+ELK 分布式日志管理系统
 
 整合 xxl-job
                    spring.mail.username=546232194@qq.com
