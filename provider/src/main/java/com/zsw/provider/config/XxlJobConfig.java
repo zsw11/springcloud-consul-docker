@@ -13,7 +13,7 @@ import org.springframework.context.annotation.Configuration;
  * @date 2021/4/23 18:10
  * @description :
  */
-@Configuration
+//@Configuration
 @RefreshScope
 public class XxlJobConfig {
     private Logger logger = LoggerFactory.getLogger(XxlJobConfig.class);

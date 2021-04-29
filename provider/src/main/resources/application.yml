@@ -5,7 +5,7 @@ server:
 spring:
   servlet:
     multipart:
-      location: classpath:static
+      max-file-size: 10MB
   application:
     name: provider01
 #  datasource:

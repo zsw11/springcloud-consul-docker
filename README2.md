@@ -47,11 +47,17 @@ output {
                 index => "logstash-%{[appname]}-%{+YYYY.MM.dd}"
         }
 }
-还有 这个文件 logstash.yml 进入logstash容器修改   hosts => ["http://192.168.2.134:9200"]
+还有 这个文件 logstash.yml 进入logstash容器修改   hosts => ["http://192.168.2.134:9200"]  要不然连接不上ES
 ELK 分布式日志管理系统
 
 整合 xxl-job
                    spring.mail.username=546232194@qq.com
 发送邮箱报警的密码：spring.mail.password=ervmowigfhdbbcce
+
+springboot日志 
+1 如果不配置则,默认日志输出在控制台
+2 打印到日志文件，输出的位置在项目所在文件件位置，在yml中进行配置 logging.file 如下配置  logging:  file: myweb.log
+3 打印到日志文件，输出到任意指定位置，需要在resources下创建一个logback-spring.xml，配置好后上面在application.yml中的配置
+                                                          
 
 

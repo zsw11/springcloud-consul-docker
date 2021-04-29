@@ -15,6 +15,7 @@ import org.springframework.web.multipart.MultipartFile;
 public class UploadController {
     @PostMapping(value = "/uploadFile", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     public String handleFileUpload(@RequestPart(value = "file") MultipartFile file) {
+        // 上传业务
         return file.getName();
     }
 }
