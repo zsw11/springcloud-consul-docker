@@ -1,6 +1,6 @@
 package com.zsw.provider.controller.inner;
 
-import com.zsw.provider.controller.api.SyaHelloServiceApi;
+import com.zsw.provider.api.SyaHelloServiceApi;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.web.bind.annotation.RestController;
 

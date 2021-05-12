@@ -1,4 +1,4 @@
-package com.zsw.provider.controller.api;
+package com.zsw.provider.api;
 
 import com.zsw.provider.entity.ResultResp;
 import org.springframework.cloud.openfeign.FeignClient;

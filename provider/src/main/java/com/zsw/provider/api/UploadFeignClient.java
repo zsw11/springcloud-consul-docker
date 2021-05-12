@@ -1,4 +1,4 @@
-package com.zsw.provider.controller.api;
+package com.zsw.provider.api;
 
 import feign.codec.Encoder;
 import feign.form.spring.SpringFormEncoder;

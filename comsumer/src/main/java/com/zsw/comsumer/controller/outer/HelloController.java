@@ -1,7 +1,7 @@
 package com.zsw.comsumer.controller.outer;
 
-import com.zsw.provider.controller.api.UploadFeignClient;
-import com.zsw.provider.controller.api.UserApi;
+import com.zsw.provider.api.UploadFeignClient;
+import com.zsw.provider.api.UserApi;
 import com.zsw.provider.entity.ResultResp;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.web.bind.annotation.*;
