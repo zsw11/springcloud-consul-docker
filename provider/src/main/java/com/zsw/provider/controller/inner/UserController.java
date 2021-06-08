@@ -48,13 +48,14 @@ public class UserController {
     @PostMapping("/add")
     public ResultResp addUser(@Validated @RequestBody UserOld userOld, BindingResult bingingResult) { //@Validated 表示检验User 对象， BindingResult 表示检验出错是保存的错误信息,BindingResult 要跟在实体类之后,
         ArrayList<String> result = new ArrayList<>();
-        if (bingingResult.hasErrors()) {
-            List<ObjectError> allErrors = bingingResult.getAllErrors();
-            for (ObjectError error : allErrors) {
-                result.add(error.getDefaultMessage());
-            }
-            return ResultResp.fail(result);
-        }
+        // 换成aop 处理
+//        if (bingingResult.hasErrors()) {
+//            List<ObjectError> allErrors = bingingResult.getAllErrors();
+//            for (ObjectError error : allErrors) {
+//                result.add(error.getDefaultMessage());
+//            }
+//            return ResultResp.fail(result);
+//        }
         // 返回插入数据的id
         int id = UserService.addUser(userOld);
         if (id > 0) {

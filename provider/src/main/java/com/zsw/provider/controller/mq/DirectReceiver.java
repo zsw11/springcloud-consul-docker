@@ -30,6 +30,8 @@ public class DirectReceiver {
             System.out.println("消费到消息"+msg);
             // 手动确认 删除队列消息
             channel.basicAck(msg.getMessageProperties().getDeliveryTag(), true);
+            // qos （服务质量保证）功能，即在非自动确认消息的前提下，如果一定数目的消息（通过基于 consume 或者 channel 设置 Qos 的值）未被确认前，不进行消费新的消息
+            channel.basicQos(0,15,false);
         }catch (Exception e){
             log.error("消费消息失败了,error："+ msg);
             // 放到死信队列 requeue=false 重发到队列=false
