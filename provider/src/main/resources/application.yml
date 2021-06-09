@@ -1,5 +1,5 @@
 # 端口
-linux: 192.168.85.128
+linux: 192.168.85.129
 server:
   port: 8771
 spring:

@@ -17,7 +17,7 @@ spring:
           enabled: true   # 坑所在， springboot2.x 这个一定要开
         prefer-ip-address: true #  表示注册时使用IP而不是hostname
 
-linux: 192.168.85.128
+linux: 192.168.85.129
 
 management:
   endpoints:

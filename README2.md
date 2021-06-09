@@ -59,5 +59,8 @@ springboot日志
 2 打印到日志文件，输出的位置在项目所在文件件位置，在yml中进行配置 logging.file 如下配置  logging:  file: myweb.log
 3 打印到日志文件，输出到任意指定位置，需要在resources下创建一个logback-spring.xml，配置好后上面在application.yml中的配置
                                                           
+sudo docker logs -f -t --tail 行数 容器名  #查看docker容器日志
+如果部署的是springboot项目，查看的就是项目日志
+前提日志要持久化到文件（log4j指定目录），而不是只打在控制台，利用挂载把日志挂载出来
 
 

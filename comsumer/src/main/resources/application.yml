@@ -52,4 +52,4 @@ provider01:   # 表示作用哪个服务
   ribbon:
     NFLoadBalancerRuleClassName: com.netflix.loadbalancer.RandomRule
 
-linux: 192.168.85.128
+linux: 192.168.85.129
